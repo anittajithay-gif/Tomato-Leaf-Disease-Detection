@@ -68,7 +68,19 @@ Tomato-Leaf-Disease-Detection/
 6. Disease Prediction
 
 ---
+## 🌐 Gradio Application
 
+This project includes a Gradio interface for tomato leaf disease prediction.
+
+Users can upload a tomato leaf image and get:
+- Predicted disease name
+- Confidence score
+- Disease description
+- Prevention methods
+
+Run locally:https://github.com/anittajithay-gif/Tomato-Leaf-Disease-Detection.git
+
+python app.py
 ## 📸 Screenshots
 
 ### Dataset
