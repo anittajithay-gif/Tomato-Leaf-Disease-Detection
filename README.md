@@ -133,8 +133,6 @@ Final Year Student
  ---
 ##  Acknowledgement
 
-## 🙏 Acknowledgement
-
 Thank you for exploring this Tomato Leaf Disease Detection project.
 
 Feedback and suggestions are always welcome! If you have any ideas for improvement, bug reports, or questions, feel free to open an issue in this repository.
