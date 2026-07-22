@@ -106,21 +106,21 @@ python app.py
 ![Accuracy](accuracy.png)
 
 ---
-## Future Enhancements
+##  Future Enhancements
 
-Improve the model accuracy by training with a larger and more diverse tomato leaf dataset.
-Expand the system to detect diseases in additional crop species.
-Integrate real-time disease detection using a mobile phone or webcam.
-Provide treatment recommendations and preventive measures for each detected disease.
-Deploy the application as a web and mobile app for easy access by farmers.
+- **Improve the model accuracy** by training with a larger and more diverse tomato leaf dataset.
+- **Expand the system** to detect diseases in additional crop species.
+- **Integrate real-time disease detection** using a mobile phone or webcam.
+- **Provide treatment recommendations** and preventive measures for each detected disease.
+- **Deploy the application** as a web and mobile app for easy access by farmers.
+
 ---
 
 ##  Author
 
-**Anitt Ajitha Y**
-Final Year Student
-B.E. Computer Science and Engineering (Artificial Intelligence & Machine Learning)
-
+**Anitt Ajitha Y**  
+Final Year Student  
+**B.E. Computer Science and Engineering (Artificial Intelligence & Machine Learning)**
 
 ---
 
