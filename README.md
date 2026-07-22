@@ -71,12 +71,17 @@ Tomato-Leaf-Disease-Detection/
 
 ## 📸 Screenshots
 
-Add screenshots of:
+### Dataset
+![Dataset](dataset.png)
 
-* Dataset
-* Training Accuracy
-* Prediction Results
-* Confusion Matrix
+### Model Training
+![Training](training%20graph.png)
+
+### Prediction Result
+![Prediction](prediction.png)
+
+### Model Accuracy
+![Accuracy](accuracy.png)
 
 ---
 
