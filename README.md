@@ -1,4 +1,4 @@
-# 🍅 Tomato Leaf Disease Detection
+#  Tomato Leaf Disease Detection
 
 Deep Learning based Tomato Leaf Disease Detection using **TensorFlow, Keras, and MobileNetV2**.
 
@@ -6,24 +6,24 @@ An intelligent Deep Learning application that detects diseases in tomato leaves 
 
 ---
 
-## 📜 Project Overview
+##  Project Overview
 
 This project classifies tomato leaf images into different disease categories using a trained **MobileNetV2** model. Users can upload a tomato leaf image and receive the predicted disease instantly.
 
 ---
 
-## 🚀 Features
+##  Features
 
-* 🍅 Detects tomato leaf diseases from images
-* 🧠 Deep Learning model using MobileNetV2
-* 📷 Image upload for prediction
-* ⚡ Fast and accurate classification
-* 💻 Developed using Python and Jupyter Notebook
-* 🌱 Ready to be deployed as a Gradio web application
+*  Detects tomato leaf diseases from images
+*  Deep Learning model using MobileNetV2
+*  Image upload for prediction
+*  Fast and accurate classification
+*  Developed using Python and Jupyter Notebook
+*  Ready to be deployed as a Gradio web application
 
 ---
 
-## 🧩 Technologies Used
+##  Technologies Used
 
 | Technology       | Purpose                 |
 | ---------------- | ----------------------- |
@@ -38,7 +38,7 @@ This project classifies tomato leaf images into different disease categories usi
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 Tomato-Leaf-Disease-Detection/
@@ -57,7 +57,7 @@ Tomato-Leaf-Disease-Detection/
 
 ---
 
-## 🧠 Model
+##  Model
 
 * **Architecture:** MobileNetV2
 * **Framework:** TensorFlow/Keras
@@ -65,7 +65,7 @@ Tomato-Leaf-Disease-Detection/
 
 ---
 
-## 📊 Project Workflow
+##  Project Workflow
 
 1. Load Dataset
 2. Image Preprocessing
@@ -75,7 +75,7 @@ Tomato-Leaf-Disease-Detection/
 6. Disease Prediction
 
 ---
-## 🌐 Gradio Application
+##  Gradio Application
 
 This project includes a Gradio interface for tomato leaf disease prediction.
 
@@ -91,7 +91,7 @@ Users can upload a tomato leaf image and get:
 python app.py
 ```
 
-## 📸 Screenshots
+## Screenshots
 
 ### Dataset
 ![Dataset](dataset.png)
@@ -107,7 +107,7 @@ python app.py
 
 ---
 
-## 🧑‍💻 Author
+##  Author
 
 **Anitt Ajitha Y**
 
