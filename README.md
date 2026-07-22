@@ -78,9 +78,12 @@ Users can upload a tomato leaf image and get:
 - Disease description
 - Prevention methods
 
-Run locally:https://github.com/anittajithay-gif/Tomato-Leaf-Disease-Detection.git
+### Run locally
 
+```bash
 python app.py
+```
+
 ## 📸 Screenshots
 
 ### Dataset
