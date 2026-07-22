@@ -107,6 +107,7 @@ python app.py
 
 ---
 ## Future Enhancements
+
 Improve the model accuracy by training with a larger and more diverse tomato leaf dataset.
 Expand the system to detect diseases in additional crop species.
 Integrate real-time disease detection using a mobile phone or webcam.
@@ -117,10 +118,9 @@ Deploy the application as a web and mobile app for easy access by farmers.
 ##  Author
 
 **Anitt Ajitha Y**
+Final Year Student
+B.E. Computer Science and Engineering (Artificial Intelligence & Machine Learning)
 
- B.E. Artificial Intelligence and Machine Learning
-
- Passionate about Artificial Intelligence, Deep Learning, and Computer Vision.
 
 ---
 
@@ -131,6 +131,6 @@ Deploy the application as a web and mobile app for easy access by farmers.
 * ✅ GitHub Repository Created
 
  ---
-##Acknowledgement
+##  Acknowledgement
 
 Thank you for exploring this Tomato Leaf Disease Detection project. Your valuable feedback and suggestions are greatly appreciated and will help improve future versions of this application.
