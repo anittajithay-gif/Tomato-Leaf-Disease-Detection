@@ -43,9 +43,16 @@ This project classifies tomato leaf images into different disease categories usi
 ```text
 Tomato-Leaf-Disease-Detection/
 │
+├── app.py
 ├── tomato.ipynb
 ├── tomato_disease_mobilenetv2.keras
+├── requirements.txt
 ├── README.md
+│
+├── dataset.png
+├── training graph.png
+├── accuracy.png
+└── prediction.png
 ```
 
 ---
