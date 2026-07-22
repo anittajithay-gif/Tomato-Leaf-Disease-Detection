@@ -1,15 +1,16 @@
-#🍅 Tomato-Leaf-Disease-Detection
-Deep Learning based Tomato Leaf Disease Detection using TensorFlow and Gradio
+# 🍅 Tomato Leaf Disease Detection
 
-An intelligent **Deep Learning** application that detects diseases in tomato leaves from uploaded images using **TensorFlow/Keras (MobileNetV2)**. This project helps farmers and researchers identify plant diseases quickly and accurately.
+Deep Learning based Tomato Leaf Disease Detection using **TensorFlow, Keras, and MobileNetV2**.
 
+An intelligent Deep Learning application that detects diseases in tomato leaves from uploaded images using **TensorFlow/Keras (MobileNetV2)**. This project helps farmers and researchers identify plant diseases quickly and accurately.
 
+---
 
 ## 📜 Project Overview
 
 This project classifies tomato leaf images into different disease categories using a trained **MobileNetV2** model. Users can upload a tomato leaf image and receive the predicted disease instantly.
 
-
+---
 
 ## 🚀 Features
 
@@ -20,7 +21,7 @@ This project classifies tomato leaf images into different disease categories usi
 * 💻 Developed using Python and Jupyter Notebook
 * 🌱 Can be extended as a web application using Gradio
 
-
+---
 
 ## 🧩 Technologies Used
 
@@ -35,7 +36,7 @@ This project classifies tomato leaf images into different disease categories usi
 | Matplotlib       | Data Visualization      |
 | Jupyter Notebook | Model Development       |
 
-
+---
 
 ## 📂 Project Structure
 
@@ -47,11 +48,13 @@ Tomato-Leaf-Disease-Detection/
 ├── README.md
 ```
 
+---
+
 ## 🧠 Model
 
-- **Architecture:** MobileNetV2
-- **Framework:** TensorFlow/Keras
-- **Input Size:** 224 × 224 pixels
+* **Architecture:** MobileNetV2
+* **Framework:** TensorFlow/Keras
+* **Input Size:** 224 × 224 pixels
 
 ---
 
@@ -89,8 +92,6 @@ Add screenshots of:
 
 ## 🏁 Project Status
 
-✅ Project Completed
-
-✅ Model Trained
-
-✅ GitHub Repository Created
+* ✅ Project Completed
+* ✅ Model Trained
+* ✅ GitHub Repository Created
