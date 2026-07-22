@@ -19,7 +19,7 @@ This project classifies tomato leaf images into different disease categories usi
 * 📷 Image upload for prediction
 * ⚡ Fast and accurate classification
 * 💻 Developed using Python and Jupyter Notebook
-* 🌱 Can be extended as a web application using Gradio
+* 🌱 Ready to be deployed as a Gradio web application
 
 ---
 
