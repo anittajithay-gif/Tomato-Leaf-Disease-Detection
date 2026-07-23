@@ -1,20 +1,30 @@
+ Step 1: Import Libraries
+# ==========================
+
 import gradio as gr
 import numpy as np
 import cv2
 import tensorflow as tf
+
 from tensorflow.keras.models import load_model
 from tensorflow.keras.applications import MobileNetV2
 
+print("✅ Libraries Imported Successfully")
+print("TensorFlow Version:", tf.__version__)
+# ==========================
+# Step 2: Load Model
+# ==========================
+
+# Load trained tomato disease classifier
+classifier = load_model(
+    "tomato_disease_mobilenetv2.keras"
+)
+
+print("✅ Tomato Disease Classifier Loaded")
+
 
 # ==========================
-# Load Trained Classifier
-# ==========================
-
-classifier = load_model("tomato_disease_mobilenetv2.keras")
-
-
-# ==========================
-# Load Feature Extractor
+# Load MobileNetV2 Feature Extractor
 # ==========================
 
 feature_extractor = MobileNetV2(
@@ -24,182 +34,354 @@ feature_extractor = MobileNetV2(
     input_shape=(224, 224, 3)
 )
 
+# Freeze feature extractor
 feature_extractor.trainable = False
 
-
+print("✅ MobileNetV2 Feature Extractor Loaded")
 # ==========================
-# Class Names
+# Step 3: Tomato Disease Class Names
 # ==========================
 
 class_names = [
+
     "Tomato___Bacterial_spot",
+
     "Tomato___Early_blight",
+
     "Tomato___Late_blight",
+
     "Tomato___Leaf_Mold",
+
     "Tomato___Septoria_leaf_spot",
+
     "Tomato___Spider_mites Two-spotted_spider_mite",
+
     "Tomato___Target_Spot",
+
     "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+
     "Tomato___Tomato_mosaic_virus",
+
     "Tomato___healthy"
+
 ]
 
 
+print("✅ Class Names Added")
+print("Number of Classes:", len(class_names))
 # ==========================
-# Disease Information
+# Step 4: Disease Information Dictionary
 # ==========================
 
 disease_info = {
 
     "Tomato___Bacterial_spot": {
-        "description": "Bacterial disease causing dark spots on tomato leaves.",
-        "prevention": "Use disease-free seeds and apply copper-based fungicides."
+        "name": "Bacterial Spot",
+        "description": "A bacterial disease that creates dark spots and lesions on tomato leaves.",
+        "symptoms": "Small dark spots, yellowing around spots, and leaf damage.",
+        "prevention": "Use disease-free seeds and remove infected plant parts.",
+        "management": "Apply recommended copper-based sprays and maintain field hygiene."
     },
+
 
     "Tomato___Early_blight": {
-        "description": "Fungal disease causing concentric brown spots on leaves.",
-        "prevention": "Remove infected leaves and spray fungicide."
+        "name": "Early Blight",
+        "description": "A fungal disease causing brown circular spots with ring patterns on leaves.",
+        "symptoms": "Brown spots, yellow leaves, and early leaf dropping.",
+        "prevention": "Avoid overhead watering and maintain proper plant spacing.",
+        "management": "Remove infected leaves and apply suitable fungicides."
     },
+
 
     "Tomato___Late_blight": {
-        "description": "Serious disease causing dark lesions on leaves and fruits.",
-        "prevention": "Avoid excess moisture and apply recommended fungicides."
+        "name": "Late Blight",
+        "description": "A serious fungal disease affecting leaves, stems, and fruits.",
+        "symptoms": "Dark irregular patches and rapid plant damage.",
+        "prevention": "Reduce moisture and improve air circulation.",
+        "management": "Use recommended fungicides and remove infected plants."
     },
+
 
     "Tomato___Leaf_Mold": {
-        "description": "Leaf mold causes yellow patches on leaves.",
-        "prevention": "Reduce humidity and improve air circulation."
+        "name": "Leaf Mold",
+        "description": "A fungal disease commonly appearing under high humidity conditions.",
+        "symptoms": "Yellow patches on upper leaves and mold growth underneath.",
+        "prevention": "Control humidity and provide proper ventilation.",
+        "management": "Use suitable fungicides and remove infected leaves."
     },
+
 
     "Tomato___Septoria_leaf_spot": {
-        "description": "Small circular brown spots appear on older leaves.",
-        "prevention": "Remove infected leaves and use fungicides."
+        "name": "Septoria Leaf Spot",
+        "description": "A fungal infection producing small circular spots on leaves.",
+        "symptoms": "Dark bordered spots mainly on older leaves.",
+        "prevention": "Remove infected leaves and avoid water contact on foliage.",
+        "management": "Apply fungal control treatments."
     },
+
 
     "Tomato___Spider_mites Two-spotted_spider_mite": {
-        "description": "Tiny mites suck plant sap and damage leaves.",
-        "prevention": "Spray miticide and maintain proper irrigation."
+        "name": "Spider Mites",
+        "description": "Small pests that damage leaves by sucking plant nutrients.",
+        "symptoms": "Yellow spots, leaf drying, and fine webbing.",
+        "prevention": "Monitor plants regularly and maintain proper irrigation.",
+        "management": "Use appropriate mite control methods."
     },
+
 
     "Tomato___Target_Spot": {
-        "description": "Brown circular spots develop on tomato leaves.",
-        "prevention": "Use resistant varieties and fungicides."
+        "name": "Target Spot",
+        "description": "Fungal disease producing circular target-like spots.",
+        "symptoms": "Brown circular lesions on leaves and plant weakness.",
+        "prevention": "Use resistant varieties and maintain plant health.",
+        "management": "Apply recommended fungicides."
     },
 
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
-        "description": "Virus causing yellow curled leaves and stunted growth.",
-        "prevention": "Control whiteflies and remove infected plants."
+     "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+        "name": "Yellow Leaf Curl Virus",
+        "description": "Viral disease causing curling and yellowing of leaves.",
+        "symptoms": "Leaf curling, yellow leaves, and reduced growth.",
+        "prevention": "Control whiteflies and remove infected plants.",
+        "management": "Use virus-resistant varieties."
     },
+
 
     "Tomato___Tomato_mosaic_virus": {
+        "name": "Tomato Mosaic Virus",
         "description": "Virus causing mosaic patterns on tomato leaves.",
-        "prevention": "Use clean tools and resistant varieties."
+        "symptoms": "Light and dark green patches on leaves.",
+        "prevention": "Use clean tools and healthy seeds.",
+        "management": "Remove infected plants and prevent virus spread."
     },
 
+
     "Tomato___healthy": {
-        "description": "The tomato leaf is healthy and free from disease.",
-        "prevention": "Continue proper watering and regular monitoring."
+        "name": "Healthy Tomato Leaf",
+        "description": "The leaf is healthy without disease symptoms.",
+        "symptoms": "Normal green leaf appearance.",
+        "prevention": "Maintain proper watering and nutrition.",
+        "management": "Continue regular crop monitoring."
     }
+
 }
 
 
+print("✅ Professional Disease Information Added")
+
 # ==========================
-# Prediction Function
+# Step 5: Prediction Function
 # ==========================
 
-def predict(image):
+def predict_tomato(image):
 
+    # Check image
+    if image is None:
+        return (
+            "No Image",
+            "0%",
+            "Please upload a tomato leaf image.",
+            "-",
+            "-",
+            "-"
+        )
+
+
+    # Convert image format
     image = cv2.resize(image, (224, 224))
 
-    image = image.astype("float32") / 255.0
 
+    # Convert to float
+    image = image.astype("float32")
+
+
+    # Normalize image for MobileNetV2
+    image = image / 255.0
+
+
+    # Add batch dimension
     image = np.expand_dims(image, axis=0)
 
 
-    features = feature_extractor.predict(image, verbose=0)
+    # Feature extraction
+    features = feature_extractor.predict(
+        image,
+        verbose=0
+    )
 
-    prediction = classifier.predict(features, verbose=0)
+
+    # Disease prediction
+    prediction = classifier.predict(
+        features,
+        verbose=0
+    )
 
 
+    # Get predicted class
     predicted_index = np.argmax(prediction)
 
     predicted_class = class_names[predicted_index]
 
 
-    confidence = float(np.max(prediction) * 100)
+    # Confidence score
+    confidence = float(
+        np.max(prediction) * 100
+    )
 
 
-    description = disease_info[predicted_class]["description"]
-
-    prevention = disease_info[predicted_class]["prevention"]
-
-
-    disease_name = predicted_class.replace(
-        "Tomato___", ""
-    ).replace("_", " ")
+    # Get disease details
+    info = disease_info[predicted_class]
 
 
-    return f"""
-🍅 TOMATO DISEASE DETECTION RESULT
+    return (
+        info["name"],
+        f"{confidence:.2f}%",
+        info["description"],
+        info["symptoms"],
+        info["prevention"],
+        info["management"]
+    )
+# Step 6: Professional Gradio Blocks UI
+# ==========================
 
-✅ Disease:
-{disease_name}
+import gradio as gr
 
-📊 Confidence:
-{confidence:.2f}%
 
-📝 Description:
-{description}
+with gr.Blocks(
+    title="AI Tomato Leaf Disease Detection"
+) as app:
 
-💡 Prevention:
-{prevention}
-"""
+
+    # Header Section
+    gr.HTML("""
+    <div style="text-align:center">
+
+        <h1> AI-Based Tomato Leaf Disease Detection System</h1>
+
+        <p style="font-size:18px;">
+        Deep Learning powered plant disease identification
+        using MobileNetV2 Transfer Learning
+        </p>
+
+    </div>
+    """)
+
+
+    gr.Markdown("---")
+
+
+    # Main Prediction Section
+    with gr.Row():
+
+        # Image Upload Section
+        with gr.Column(scale=1):
+
+            input_image = gr.Image(
+                type="numpy",
+                 label="📷 Upload Tomato Leaf Image"
+            )
+
+
+            predict_btn = gr.Button(
+                "🔍 Detect Disease",
+                variant="primary"
+            )
+
+
+        # Output Section
+        with gr.Column(scale=1):
+
+            disease_output = gr.Textbox(
+                label=" Predicted Disease"
+            )
+
+
+            confidence_output = gr.Textbox(
+                label=" Confidence Score"
+            )
+
+
+            description_output = gr.Textbox(
+                label=" Disease Description",
+                lines=3
+            )
+
+
+            symptoms_output = gr.Textbox(
+                label=" Symptoms",
+                lines=3
+            )
+
+
+            prevention_output = gr.Textbox(
+                label=" Prevention",
+                 lines=3
+            )
+
+
+            management_output = gr.Textbox(
+                label=" Management",
+                lines=3
+            )
+
+
+
+    gr.Markdown("---")
+
+
+    
+
+
+    gr.Markdown("---")
+
+
+    # Project Details Section
+
+    gr.Markdown("""
+    ##  Project Details
+
+
+    **Project Title:**  
+     AI-Based Tomato Leaf Disease Detection System
+
+
+    **Technology Used:**  
+    Deep Learning | MobileNetV2 Transfer Learning | TensorFlow | Gradio
+
+
+    **Model:**  
+    MobileNetV2 CNN Architecture
+
+ **Developed By:**  
+    Y Anitt Ajitha
+
+
+    **Project Type:**  
+    AI & ML Project - 2026
+
+
+    """)
+
+
+
+    # Button Connection
+
+    predict_btn.click(
+        fn=predict_tomato,
+        inputs=input_image,
+        outputs=[
+            disease_output,
+            confidence_output,
+            description_output,
+            symptoms_output,
+            prevention_output,
+            management_output
+        ]
+    )
+
 
 
 # ==========================
-# Gradio Interface
+# Launch Application
 # ==========================
 
-interface = gr.Interface(
-
-    fn=predict,
-
-    inputs=gr.Image(
-        type="numpy",
-        label="Upload Tomato Leaf Image"
-    ),
-
-    outputs=gr.Textbox(
-        label="Prediction Result"
-    ),
-
-    title="🍅 AI-Based Tomato Leaf Disease Detection System",
-
-    description="""
-Upload a tomato leaf image.
-
-This AI model will:
-
-✅ Detect the disease
-
-✅ Display confidence score
-
-✅ Show disease description
-
-✅ Suggest prevention methods
-""",
-
-    article="""
----
-### 👩‍💻 Developed By
-
-**Y Anitt Ajitha**
-
-**Internship Project - 2026**
-
-**Deep Learning Model: MobileNetV2**
-"""
-)
-
-
-interface.launch()
+app.launch()
